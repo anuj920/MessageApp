@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h1 class='messagetitle'>{{ message.title }}</h1>
+<p class='messagecontent'>{{message.msg |safe}}</p>
+{% if message.added %}
+<div class="date messagedate">
+    <p><strong>Published on:</strong> {{ message.added }}</p>
+</div>
+{% endif %}
+
+{% if user.is_authenticated and message.user == user %}
+<a class="btn btn-primary" href="{% url 'message_edit' pk=message.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+<a class="btn btn-primary" href="{% url 'message_remove' pk=message.pk %}"><span
+        class="glyphicon glyphicon-remove"></span></a>
+{% endif %}
+
+<hr>
+
+
+{% endblock %}

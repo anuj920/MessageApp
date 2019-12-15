@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="centerstage">
+    {% if user.is_authenticated %}
+    <div class="user">
+        <h1>Welcome {{ user.username|title }}</h1>
+    </div>
+    
+    <hr>
+
+    {% endif %}
+    {% for message in message_list %}
+    <div class="message">
+        <h1><a href="{% url 'message_detail' pk=message.pk %}">{{ message.title }}</a></h1>
+        <div class="date">
+            <p>Added on: {{ message.added }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block extra %}
+<div class="center">
+    <p class="color">hello is new content</p>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="centerstage">
+    {% for message in message_list %}
+    {% if user.is_authenticated  %}
+    <div class="message">
+        <h1><a href="{% url 'message_detail' pk=message.pk %}">{{ message.title }}</a></h1>
+        <div class="date">
+            <p>Published on: {{ message.added }}</p>
+        </div>
+    </div>
+    {% endif %}
+    {% empty %}
+    <h3 class="jumbotron">You don't have any message</h3>
+    {% endfor %}
+</div>
+{% endblock %}
